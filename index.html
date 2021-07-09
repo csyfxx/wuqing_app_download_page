@@ -24,15 +24,14 @@
     <link rel="stylesheet" href="./static/css/normalize.css?r=<%=Math.random()%">
     <!-- 当前页面的css -->
     <!-- import component CSS -->
-    <link rel="stylesheet" href="./static/css/mintui.css">
-    <link rel="stylesheet" href="./static/css/element.css">
     <link rel="stylesheet" href="./static/css/screen.css">
+    <link rel="stylesheet" href="./static/css/dialog.css">
     <!-- 阿里的rem适配方案 -->
     <script src="./static/js/flexible.js?r=<%=Math.random()%"></script>
     <script src="./static/js/vue.js?r=<%=Math.random()%"></script>
-
+    <script src="./static/js/jquery.min.js"></script>
+    <script src="./static/js/dialog.min.js"></script>
     <title>武清区安全助手APP下载</title>
-
 </head>
 
 <body>
@@ -46,7 +45,6 @@
         <div class="download-btn" @click="download()">点击下载</div>
         <div style="font-size: 14px;text-align: center;position: fixed;bottom: 20%;">技术支持：天津世纪广源提供技术支持</div>
     </div>
-    <script src="./static/js/jquery.min.js"></script>
 </body>
 <script>
     // 为了方便操作DOM 选择用Vue快速开发
@@ -73,7 +71,7 @@
                 } else {
                     if (this.dtype === 0) {
                         var a = document.createElement("a");
-                        a.download = "汝城城管.apk";
+                        a.download = "武清区安全助手.apk";
                         a.href = "https://qiniu.csyfxx.com/wuqing_app_android.apk";
                         $("body").append(a); // 修复firefox中无法触发click
                         a.click();
@@ -82,6 +80,18 @@
                         // var a = document.createElement("a");
                         // a.download = "桂东五位一体.ipa";
                         // a.href = "itms-services://?action=download-manifest&url=https://img.zccbtc.com/gb5.plist";
+                        // $("body").append(a); // 修复firefox中无法触发click
+                        // a.click();
+                        // $(a).remove()
+                        debugger
+                        $(document).dialog({
+                            titleText:"【温馨提示】",
+                            content: 'ios端暂未上架',
+                        });
+                        return;
+                        // var a = document.createElement("a");
+                        // a.download = "武清区安全助手.apk";
+                        // a.href = "https://qiniu.csyfxx.com/wuqing_app_android.apk";
                         // $("body").append(a); // 修复firefox中无法触发click
                         // a.click();
                         // $(a).remove()
