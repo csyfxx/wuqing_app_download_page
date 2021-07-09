@@ -1,0 +1,110 @@
+<!--
+ * @Description: 
+ * @Author: gwsh
+ * @Date: 2020-04-08 12:58:46
+ * @LastEditTime: 2020-04-13 12:21:57
+ * @LastEditors: gwsh
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入视口标签 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+     initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <link rel="shortcut icon" href="./static/images/favicon.ico?r=<%=Math.random()%" />
+    <!-- 初始化样式 -->
+    <link rel="stylesheet" href="./static/css/normalize.css?r=<%=Math.random()%">
+    <!-- 当前页面的css -->
+    <!-- import component CSS -->
+    <link rel="stylesheet" href="./static/css/mintui.css">
+    <link rel="stylesheet" href="./static/css/element.css">
+    <link rel="stylesheet" href="./static/css/screen.css">
+    <!-- 阿里的rem适配方案 -->
+    <script src="./static/js/flexible.js?r=<%=Math.random()%"></script>
+    <script src="./static/js/vue.js?r=<%=Math.random()%"></script>
+
+    <title>武清区安全助手APP下载</title>
+
+</head>
+
+<body>
+    <div id="app" class="main">
+        <div class="logo"></div>
+        <div class="app_name">武清区安全助手APP下载</div>
+        <div v-show="showTip" class="wxtip">
+            <div class="share">↑</div>
+            <div class="description">点击右上角，<br />选择“在浏览器中打开”</div>
+        </div>
+        <div class="download-btn" @click="download()">点击下载</div>
+        <div style="font-size: 14px;text-align: center;position: fixed;bottom: 20%;">技术支持：天津世纪广源提供技术支持</div>
+    </div>
+    <script src="./static/js/jquery.min.js"></script>
+</body>
+<script>
+    // 为了方便操作DOM 选择用Vue快速开发
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                dtype: 0,
+                showTip: false,
+            }
+        },
+        methods: {
+            download() {
+                const {
+                    userAgent
+                } = navigator
+                const isWeixin = !!/MicroMessenger/i.test(userAgent)
+                this.isAndroid =
+                    userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1
+                this.isMac = !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+                if (isWeixin) {
+                    //如果是微信环境，就弹出遮罩层
+                    this.showTip = true
+                } else {
+                    if (this.dtype === 0) {
+                        var a = document.createElement("a");
+                        a.download = "汝城城管.apk";
+                        a.href = "https://qiniu.csyfxx.com/wuqing_app_android.apk";
+                        $("body").append(a); // 修复firefox中无法触发click
+                        a.click();
+                        $(a).remove()
+                    } else {
+                        // var a = document.createElement("a");
+                        // a.download = "桂东五位一体.ipa";
+                        // a.href = "itms-services://?action=download-manifest&url=https://img.zccbtc.com/gb5.plist";
+                        // $("body").append(a); // 修复firefox中无法触发click
+                        // a.click();
+                        // $(a).remove()
+                    }
+                }
+            },
+            checkIphone() {
+                var u = navigator.userAgent,
+                    app = navigator.appVersion;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+                var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                if (isAndroid) {
+                    this.dtype = 0
+                }
+                if (isIOS) {
+                    this.dtype = 1
+                }
+            },
+        },
+        created() {
+            this.checkIphone();
+        },
+    })
+</script>
+
+</html>

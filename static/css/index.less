@@ -1,0 +1,648 @@
+@baseFont: 14px;
+@navBackGround: #FFFFFF;
+@yfNavWrapperHight: 1.706667rem;
+@mintNavbar: 1.066667rem;
+// 实时油价定位的顶部top 位置
+@LiveOilPricePositionTop: 2.666667rem;
+// 实时油价4个div 下面两个的 margin-bottom 值
+@OilPriceMarginBottom: .533333rem;
+// 实时油价div的高度
+@LiveOilPriceHeight: 5.893333rem;
+// 实时油价的两个div之间的间隙
+@gap: .533333rem;
+// 四个点到边界的距离
+@pointDistance: .2rem;
+html {
+  font-size: @baseFont;
+}
+body {
+  min-width: 320px !important;
+  max-width: 750px !important;
+  // fliexible 给我划分了 10等分  
+  // 然后设计稿是 750px 那么每一份及为 75px 
+  // 然后75px == 1rem  那么整个屏幕的宽度就是 10个 rem
+  width: 10rem;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-family: PingFangSC-Medium, Arial, Helvetica, sans-serif;
+  background: #f2f2f2;
+}
+.yf-oil{
+  .yf-nav-wrapper {
+    background-color: @navBackGround;
+    height: @yfNavWrapperHight;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    min-width: 320px;
+    max-width: 750px;
+    margin: 0 auto;
+    .nav-title {
+      color:rgba(0,0,0,1);
+      text-align: center;
+      padding-top: .88rem;
+      .title-font {
+        height: .466667rem;
+        line-height: .466667rem;
+        font-size: .493333rem;
+      }
+    }
+    .mint-navbar {
+      min-width: 320px;
+      max-width: 750px;
+      width: 100%;
+      font-size: .4rem;
+      margin: 0 auto;
+      top: @yfNavWrapperHight;
+      height: @mintNavbar;
+      .mint-tab-item-label {
+        font-size: .4rem;
+      }
+      /* 显示一个分割线 */
+      .mint-tab-item:nth-child(2n-1) .mint-tab-item-label {
+        border-right: 1px solid #E5E5E5 !important;
+      }
+      .mint-tab-item.is-selected {
+        color: rgba(244, 61, 86, 1);
+      }
+      .mint-tab-item.is-selected:after {
+        content: "  ";
+        width: 1.413333rem;
+        height: 3px;
+        background: rgba(244, 61, 86, 1);
+        margin: 0.01rem auto;
+        margin-top: .17rem + 0.066667rem;
+        // margin-top: 0.436667rem;
+        display: block;
+      }
+      .mint-tab-item {
+        border: 0;
+        padding: .226667rem 0 .066667rem 0;
+      }
+    }
+  }
+  .mint-tab-container {
+    top:@mintNavbar + @yfNavWrapperHight;
+    // 直销价
+    .retail-oil {
+      position: relative;
+      overflow: hidden;
+      // TODO 
+      height: 20.666667rem;
+      .retail-oil-img{
+        img {
+          width: 100%;
+          display: inline-block;
+        }
+      }
+      // 实时油价
+      .live-oil-price {
+        position: absolute;
+        z-index: 2;
+        // TODO 后期改为百分比
+        top: @LiveOilPricePositionTop;
+        left: 5%;
+        overflow: hidden;
+        background: @navBackGround;
+        margin: 0 auto;
+        width: 90%;
+        border-radius: .133333rem;
+        height: @LiveOilPriceHeight + @OilPriceMarginBottom;
+        .live-title {
+          overflow: hidden;
+          width: 90%;
+          margin: 0 auto;
+          height: 1rem;
+          line-height: 1rem;
+          margin-top: .133333rem;
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          img {
+            width: .8rem;
+          }
+          // div:nth-child(1) {
+          //   float: left;
+          //   font-size: .533333rem;
+          //   height: 100%;
+          //   background:url("../images/youjia.png") no-repeat center center;
+          // }
+          div:nth-child(2) {
+            float: left;
+            font-size: .533333rem;
+            color: #50576A;
+          }
+        }
+        // 四个div
+        .oil-price {
+          overflow: hidden;
+          .item {
+            width: 50%;
+            float: left;
+            .oil {
+              color: #FFFFFF;
+              width: 87%;
+              background: red;
+              margin: .1rem auto;
+              border-radius: .16rem;
+              font-size: .32rem;
+              div {
+                padding-left: .266667rem;
+              }
+              div:nth-child(1) {
+                padding-top: .333333rem;
+                padding-bottom: .213333rem;
+              }
+              div:nth-child(2),  div:nth-child(3){
+                font-size: .24rem;
+              }
+              div:nth-child(3){
+                padding-bottom: .346667rem;
+              }
+            }
+          }
+          .item:nth-child(1) {
+            .oil {
+              background: linear-gradient(-45deg, rgba(255, 176, 50, 1), rgba(255, 123, 44, 1));
+              // margin-right: 
+              margin-left: 10%;
+              margin-right: 3%;
+            }
+          }
+          .item:nth-child(2) {
+            .oil{
+              background: linear-gradient(-45deg, rgba(72, 156, 226, 1), rgba(20, 118, 209, 1));            
+              margin-left: 3%;
+              margin-right: 10%;
+            }
+          }
+          .item:nth-child(3) {
+            .oil {
+              background: linear-gradient(0deg, rgba(254, 62, 97, 1), rgba(255, 110, 151, 1));            
+              margin-left: 10%;
+              margin-right: 3%;
+            }
+            margin-bottom: @OilPriceMarginBottom;
+          }
+          .item:nth-child(4) {
+            .oil{
+              background: linear-gradient(-45deg, rgba(135, 225, 135, 1), rgba(51, 172, 116, 1));            
+              margin-left: 3%;
+              margin-right: 10%;
+            }
+            margin-bottom: @OilPriceMarginBottom;
+          }
+        }
+        // 下面的两个点
+        .live-point-left {
+          position: absolute;
+          bottom: @pointDistance;
+          left: 5%;
+          width: .226667rem;
+          height: .226667rem;
+          background: #909BCB;
+          border-radius:50%;
+        }
+        .live-point-right {
+          position: absolute;
+          bottom: @pointDistance;
+          right: 5%;
+          width: .226667rem;
+          height: .226667rem;
+          background: #909BCB;
+          border-radius:50%;
+        }
+        // 两根线
+        .column1 {
+          position: absolute;
+          left: 5.6%;
+          height: @pointDistance * 3 + -0.133333rem;
+          width: .133333rem;
+          background:linear-gradient(0deg,rgba(144,162,255,1) 0%,rgba(54,102,255,1) 47%,rgba(144,162,255,1) 100%);
+          bottom: -0.133333rem;
+          border-radius: .106667rem;
+          z-index: 999;
+        }
+        .column2 {
+          position: absolute;
+          right: 5.6%;
+          height: @pointDistance * 3 + -0.133333rem;
+          width: .133333rem;
+          background:linear-gradient(0deg,rgba(144,162,255,1) 0%,rgba(54,102,255,1) 47%,rgba(144,162,255,1) 100%);
+          bottom: -0.133333rem;
+          border-radius: .106667rem;
+          z-index: 999;
+        }
+      }
+      // 图表形式的实时油价
+      .chart {
+        position: absolute;
+        z-index: 2;
+        // 在实时油价的上面 加上一个40px
+        top: @LiveOilPricePositionTop + @LiveOilPriceHeight + @OilPriceMarginBottom;
+        left: 5%;
+        overflow: hidden;
+        // TODO 
+        margin: 0 auto;
+        width: 90%;
+        border-radius: 0.133333rem;
+        // padding-top: @gap;
+        .row {
+          height: @gap;
+          background: transparent;
+        }
+        .content {
+          background: @navBackGround;
+          border-radius: 0.133333rem;
+          // border-top: solid 1px transparent;
+          overflow: hidden;
+          .chart-content {
+            // width: 80%;
+            margin: 0 auto;
+          }
+          .content-head {
+            height: 1.16rem;
+            font-size: .26rem;
+            width: 90%;
+            margin: 0 auto;
+            margin-top: .8rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            display: -webkit-flex; /* Safari */
+            // justify-content: space-around;
+            align-items: center;
+            // background: green;
+            .left {
+              float: left;
+              width: 60%;
+              display: flex;
+              flex-direction: row;
+              display: -webkit-flex; /* Safari */
+              align-items: center;
+              .img {
+               width: 0.8rem;
+              }
+              .content-title {
+                // margin-left: .266667rem;
+                font-size: .533333rem;
+                color: #50576A;
+                text-align: start;
+              }
+            }
+            .right {
+              height: 100%;
+              float: right;
+              width: 40%;
+              display: flex;
+              flex-direction: row;
+              display: -webkit-flex; /* Safari */
+              align-items: center;
+              div{
+                width: 1.16rem;
+                height: .68rem;
+                line-height: .68rem;
+                text-align: center;
+                background: #2280D6;
+                font-size: .4rem;
+                font-weight: Regular;
+                color: #fff;
+                border-radius: .36rem;
+              }
+              div:nth-child(2){
+                margin-left: .306667rem;
+              }
+            }
+          }
+          // 底部描述
+          .bottom-note {
+            font-size: .32rem;
+            color: #666666;
+            font-weight: Regular;
+            font-family: SourceHanSansSC-Regular;
+            text-align: start;
+            width: 3.693333rem;
+            margin: auto;
+            margin-bottom: .266667rem;
+          }
+          .el-carousel__button {
+            display: block;
+            opacity: .48;
+            width: .16rem;
+            height: .16rem;
+            border-radius: 50%;
+            background-color: #FFF;
+            border: none;
+            outline: 0;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            -webkit-transition: .3s;
+            transition: .3s;
+        }
+        .el-carousel__indicator--horizontal {
+          display: inline-block;
+          padding: 0 .053333rem;
+        }
+        .is-active {
+          .el-carousel__button {
+            opacity: 1;
+            background: whitesmoke
+          }
+        }
+        .el-carousel__button {
+          background: whitesmoke;
+        }
+        }
+        // 导航栏
+        .banner {
+          // height: 300px;
+          // background: red;
+          .sized-box {
+            height: .533333rem;
+            background: transparent;
+          }
+          .banner-title {
+            height: .533333rem;
+            line-height: .533333rem;
+            // background: rebeccapurple;
+            font-size: .533333rem;
+            color: #333333;
+            font-family: PingFangSC-Semibold;
+            font-weight: Semibold;
+            border-left: .066667rem solid #F43D56;
+            margin-bottom: .266667rem;
+            padding-left: .266667rem;
+          }
+          .content {
+            height: 2.666667rem;
+            // background: green;
+            overflow: hidden;
+            img {
+              height: 100%;
+              width: 100%;
+            }
+            .el-carousel__container {
+              height: 2.666667rem;
+            }
+          }
+        }
+        // 图表上面的两个点
+        .live-point-left {
+          position: absolute;
+          top: @pointDistance + @gap;;
+          left: 5%;
+          width: .226667rem;
+          height: .226667rem;
+          background: #909BCB;
+          border-radius:50%;
+        }
+        .live-point-right {
+          position: absolute;
+          top: @pointDistance + @gap;
+          right: 5%;
+          width: .226667rem;
+          height: .226667rem;
+          background: #909BCB;
+          border-radius:50%;
+        }
+        // 两根线
+        .column1 {
+          position: absolute;
+          left: 5.6%;
+          height: 1.093333rem;
+          width: .133333rem;
+          background:linear-gradient(0deg,rgba(144,162,255,1) 0%,rgba(54,102,255,1) 47%,rgba(144,162,255,1) 100%);
+          top: -0.133333rem;
+          border-radius: .106667rem;
+          z-index: 999;
+        }
+        .column2 {
+          position: absolute;
+          right: 5.6%;
+          height: 1.093333rem;
+          width: .133333rem;
+          background:linear-gradient(0deg,rgba(144,162,255,1) 0%,rgba(54,102,255,1) 47%,rgba(144,162,255,1) 100%);
+          top: -0.133333rem;
+          border-radius: .106667rem;
+          z-index: 999;
+        }
+      }
+    }
+    // 批发价
+    .wholesale-oil {
+      position: relative;
+      overflow: hidden;
+      height: 20.666667rem;
+      // 顶部图片
+      .wholesale-oil-img{
+        img {
+          width: 100%;
+          display: inline-block;
+        }
+      }
+        // 实时油价
+      .live-oil-price {
+        position: absolute;
+        z-index: 2;
+        // TODO 后期改为百分比
+        top: @LiveOilPricePositionTop;
+        left: 5%;
+        overflow: hidden;
+        background: @navBackGround;
+        margin: 0 auto;
+        width: 90%;
+        border-radius: .133333rem;
+        // TODO 后期要把后面的高度提取出来成为一个变量
+        height: 100%;
+        // height: @LiveOilPriceHeight + @OilPriceMarginBottom + 5rem;
+        // 选择地址
+        .selectArea {
+          height: 1rem;
+          // background: green;
+          line-height:1rem;
+          display: flex;
+          display: -webkit-flex; /* Safari */
+          align-items: center;
+          justify-content: flex-end;
+          padding-right: .373333rem;
+          margin-top: .266667rem;
+          .el-icon-arrow-up:before {
+            content: "\e6e1";
+            color: #4f4fb5;
+            font-weight: 800;
+          }
+          .font-text{
+            color: #534F71;
+            font-size: .32rem;
+            padding-right: .4rem;
+          }
+          .el-select>.el-input{
+            width: 2.186667rem;
+            height: .613333rem;
+            line-height: .613333rem;
+            border:2px solid rgba(72,156,226,1);
+            border-radius:23px;
+            font-size: .32rem;
+          }
+          .el-input--mini .el-input__inner {
+            width: 2.186667rem;
+            height: .613333rem;
+            background: transparent;
+            border: 0;
+        }
+        }
+        .live-title {
+          overflow: hidden;
+          width: 90%;
+          margin: 0 auto;
+          height: 1rem;
+          line-height: 1rem;
+          margin-top: .133333rem;
+          display: flex;
+          justify-self: start;
+          align-items: center;
+          img {
+            width: .8rem;
+          }
+          // div:nth-child(1) {
+          //   float: left;
+          //   font-size: .533333rem;
+          //   width: .8rem;
+          //   height: 100%;
+          //   background:url("../images/news.png") no-repeat center center;
+          // }
+          div:nth-child(2) {
+            float: left;
+            font-size: .533333rem;
+            color: #50576A;
+          }
+        }
+        // 四个div
+        .oil-price {
+          overflow: hidden;
+          .item {
+            width: 50%;
+            float: left;
+            .oil {
+              color: #FFFFFF;
+              width: 87%;
+              background: red;
+              margin: .1rem auto;
+              border-radius: .16rem;
+              font-size: .32rem;
+              div {
+                padding-left: .266667rem;
+              }
+              div:nth-child(1) {
+                padding-top: .333333rem;
+                // padding-bottom: .213333rem;
+              }
+              div:nth-child(2) {
+                font-size: .48rem;
+                padding-bottom: .133333rem;
+              }
+            }
+          }
+          .item:nth-child(1) {
+            .oil {
+              background: linear-gradient(-45deg, rgba(255, 176, 50, 1), rgba(255, 123, 44, 1));
+              // margin-right: 
+              margin-left: 10%;
+              margin-right: 3%;
+            }
+          }
+          .item:nth-child(2) {
+            .oil{
+              background: linear-gradient(-45deg, rgba(72, 156, 226, 1), rgba(20, 118, 209, 1));            
+              margin-left: 3%;
+              margin-right: 10%;
+            }
+          }
+          .item:nth-child(3) {
+            .oil {
+              background: linear-gradient(0deg, rgba(254, 62, 97, 1), rgba(255, 110, 151, 1));            
+              margin-left: 10%;
+              margin-right: 3%;
+            }
+            // TODO 暂时注释
+            // margin-bottom: @OilPriceMarginBottom;
+          }
+          .item:nth-child(4) {
+            .oil{
+              background: linear-gradient(-45deg, rgba(135, 225, 135, 1), rgba(51, 172, 116, 1));            
+              margin-left: 3%;
+              margin-right: 10%;
+            }
+            // TODO 暂时注释
+            // margin-bottom: @OilPriceMarginBottom;
+          }
+        }
+        .pf-time {
+          color: #F43D56;
+          font-size: .32rem;
+          width: 90%;
+          // background: green;
+          margin: auto;
+          text-align: end;
+        }
+        .sell-title {
+          display: -webkit-flex; /* Safari */
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 90%;
+          margin: 0 auto;
+          margin-top: 1rem;
+          img {
+            width: 10%;
+          }
+          div {
+            width: 5.613333rem;
+            margin: 0 .2rem;
+            height: .666667rem;
+            line-height: .666667rem;
+            text-align: center;
+            color: #FFFFFF;
+            font-size: .32rem;
+            border-radius: .333333rem 0px .333333rem 0px;
+            background:linear-gradient(260deg,rgba(54,119,252,1) 0%,rgba(63,125,255,1) 100%);
+          }
+        }
+        .yf-table {
+          width: 90%;
+          height: .786667rem;
+          margin: 0 auto;
+          font-size: .4rem;
+          margin-top: .133333rem;
+          table {
+            background:rgba(63,125,255,0.2);
+            border-radius: .133333rem;
+            width: 100%;
+            tr {
+              th {
+                text-align: start;
+                font-size: .32rem;
+                color: #3F7DFF;
+                font-weight: 300;
+              }
+              th:nth-child(1){
+                width: 30%;
+                padding-left: .153333rem;
+              }
+            }
+            tr:nth-child(1){
+              th {
+                color: black;
+                text-align: start;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
