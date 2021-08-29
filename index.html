@@ -31,13 +31,13 @@
     <script src="./static/js/vue.js?r=<%=Math.random()%"></script>
     <script src="./static/js/jquery.min.js"></script>
     <script src="./static/js/dialog.min.js"></script>
-    <title>武清区安全助手APP下载</title>
+    <title>武清安全平台APP下载</title>
 </head>
 
 <body>
     <div id="app" class="main">
         <div class="logo"></div>
-        <div class="app_name">武清区安全助手APP下载</div>
+        <div class="app_name">武清安全平台APP下载</div>
         <div v-show="showTip" class="wxtip">
             <div class="share">↑</div>
             <div class="description">点击右上角，<br />选择“在浏览器中打开”</div>
@@ -71,7 +71,7 @@
                 } else {
                     if (this.dtype === 0) {
                         var a = document.createElement("a");
-                        a.download = "武清区安全助手.apk";
+                        a.download = "武清安全平台.apk";
                         a.href = "https://qiniu.csyfxx.com/wuqing_app_android.apk";
                         $("body").append(a); // 修复firefox中无法触发click
                         a.click();
@@ -84,7 +84,7 @@
                         // a.click();
                         // $(a).remove()
                         $(document).dialog({
-                            titleText:"【温馨提示】",
+                            titleText: "【温馨提示】",
                             content: 'ios端暂未上架',
                         });
                         return;
